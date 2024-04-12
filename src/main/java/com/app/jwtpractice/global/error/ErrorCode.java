@@ -2,14 +2,14 @@ package com.app.jwtpractice.global.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
-public class ErrorCode {
+public enum ErrorCode {
+    TEST_(HttpStatus.INTERNAL_SERVER_ERROR, "001", "business");
+
     private HttpStatus httpStatus;
     private String errorCode;
-    private String message;
+    private String errorMessage;
 }

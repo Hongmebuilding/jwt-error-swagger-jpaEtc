@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Builder
 public class ErrorResponse {
+
     private String errorCode;
     private String errorMessage;
 
@@ -30,8 +31,9 @@ public class ErrorResponse {
     private static String createErrorMessage(BindingResult bindingResult) {
         StringBuilder sb = new StringBuilder();
         boolean isFirst = true;
+
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
-        for(FieldError fieldError : fieldErrors) {
+        for (FieldError fieldError : fieldErrors) {
             if(!isFirst) {
                 sb.append(", ");
             } else {
@@ -39,9 +41,12 @@ public class ErrorResponse {
             }
             sb.append("[");
             sb.append(fieldError.getField());
-            sb.append("]");
+            sb.append("] ");
             sb.append(fieldError.getDefaultMessage());
         }
+
         return sb.toString();
     }
+
 }
+
