@@ -41,3 +41,8 @@ kakao:
   client:
     id: 85ce68b97843d98acc3042fc4c3fd7eb
     secret: N2As2KGYv9ucHPN17cwQP0YW3RqXhOAW
+
+token:
+  secret: 7JWI7J6I7Yq466CI7J2Y7J24IOyVhOyngOyKpOyVhOyngA==  # 임의의 문자열
+  access-token-expiration-time: 900000  # 15분 1000(ms) x 60(s) x 15(m)
+  refresh-token-expiration-time: 1209600000 # 2주 1000(ms) x 60 (s) x 60(m) x 24(h) x 14(d)
