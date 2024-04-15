@@ -30,4 +30,12 @@ public class ExceptionTestController {
         }
         return "ok";
     }
+
+    @GetMapping("/exception-test")
+    public String exceptionTest(String isError) {
+        if("true".equals(isError)){
+            throw new IllegalArgumentException("예외테스트");
+        }
+        return "ok";
+    }
 }
