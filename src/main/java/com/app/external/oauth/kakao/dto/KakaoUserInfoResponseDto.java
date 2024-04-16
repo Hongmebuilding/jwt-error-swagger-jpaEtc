@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
 public class KakaoUserInfoResponseDto {
+
     private String id;
 
     @JsonProperty("kakao_account")
@@ -19,9 +19,14 @@ public class KakaoUserInfoResponseDto {
 
         @Getter @Setter
         public static class Profile {
+
             private String nickname;
+
             @JsonProperty("thumbnail_image_url")
-            private String thumbnailImgUrl;
+            private String thumbnailImageUrl;
+
         }
+
     }
+
 }
