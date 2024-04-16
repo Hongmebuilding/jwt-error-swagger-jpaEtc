@@ -4,6 +4,7 @@ import com.app.jwtpractice.domain.common.BaseEntity;
 import com.app.jwtpractice.domain.member.constant.MemberType;
 import com.app.jwtpractice.domain.member.constant.Role;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MemberEntity  extends BaseEntity{
+public class Member extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
@@ -42,4 +43,15 @@ public class MemberEntity  extends BaseEntity{
     private String refreshToken;
 
     private LocalDateTime tokenExpirationTime;
+
+    @Builder
+    public Member(MemberType memberType, String email, String password, String memberName,
+                        String profile, Role role) {
+        this.memberType = memberType;
+        this.email = email;
+        this.password = password;
+        this.memberName = memberName;
+        this.profile = profile;
+        this.role = role;
+    }
 }
