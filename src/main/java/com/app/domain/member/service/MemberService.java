@@ -17,10 +17,15 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Member registerMember(Member member) {
+        validateDuplicateMember(member);
         return memberRepository.save(member);
     }
 
     private void validateDuplicateMember(Member member) {
-        Member member1 = Optional.ofNullable(memberRepository.findByEmail(member.getEmail())).orElseThrow(() -> new BusinessException(ErrorCode.ALREADY_REGISTERED_MEMBER));
+        Optional.ofNullable(memberRepository.findByEmail(member.getEmail())).orElseThrow(() -> new BusinessException(ErrorCode.ALREADY_REGISTERED_MEMBER));
+    }
+
+    public Member findMemberByEmail(String email) {
+        return memberRepository.findByEmail(email);
     }
 }
