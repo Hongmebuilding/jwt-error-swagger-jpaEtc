@@ -1,5 +1,6 @@
 package com.app.global.config.web;
 
+import com.app.global.intercepter.AdminAuthorizationInterceptor;
 import com.app.global.intercepter.AuthenticationInterceptor;
 import com.app.global.resolver.memberInfo.MemberInfoArgumentResolver;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,11 @@ import java.util.List;
 @Configuration
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
+    // interceptor는 구현시 주입해줘야 함
     private final AuthenticationInterceptor authenticationInterceptor;
+    private final AdminAuthorizationInterceptor adminAuthorizationInterceptor;
     private final MemberInfoArgumentResolver memberInfoArgumentResolver;
+
 
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("*")
@@ -43,6 +47,10 @@ public class WebConfig implements WebMvcConfigurer {
                         "/api/logout",
                         "/api/health"
                         );
+
+        registry.addInterceptor(adminAuthorizationInterceptor)
+                .order(2)
+                .addPathPatterns("/api/admin/**");
     }
 
     @Override
