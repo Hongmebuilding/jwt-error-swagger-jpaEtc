@@ -33,11 +33,11 @@ public class MemberInfoArgumentResolver implements HandlerMethodArgumentResolver
 
         Claims tokenClaims = tokenManager.getTokenClaims(token);
         Long memberId = Long.valueOf((Integer) tokenClaims.get("memberId"));
-        Role role = (Role) tokenClaims.get("role");
+        String role = (String) tokenClaims.get("role");
 
         return MemberInfoDto.builder()
                 .memberId(memberId)
-                .role(role)
+                .role(Role.from(role))
                 .build();
     }
 }

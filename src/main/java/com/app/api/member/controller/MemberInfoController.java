@@ -26,7 +26,7 @@ public class MemberInfoController {
         String accessToken = authorizationHeader.split(" ")[1];
         Claims tokenClaims = tokenManager.getTokenClaims(accessToken);
         Long memberId = Long.valueOf((Integer)tokenClaims.get("memberId"));
-        MemberInfoResponseDto memberInfoResponseDto = memberInfoService.getMemberInfo(memberId);
+        MemberInfoResponseDto memberInfoResponseDto = memberInfoService.getMemberInfo(memberId); // 이 과정을 모듈화 중
         return ResponseEntity.ok(memberInfoResponseDto);
     }
 }
